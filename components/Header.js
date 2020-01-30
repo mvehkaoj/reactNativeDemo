@@ -13,17 +13,16 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        flex: 1,
-        marginTop: 25,
-        backgroundColor: 'teal',
-        alignItems: 'center',
-        justifyContent: 'center',
         fontSize: 40,
         fontWeight: 'bold',
-        alignSelf: 'stretch'
+        textAlign: 'center',
+        paddingTop: 20,
+        paddingBottom: 20,        
+
     },
     container:{
+        alignSelf: 'stretch',
         height: 80,
-        alignSelf: 'stretch'
+        backgroundColor: 'teal',
     }
   });
