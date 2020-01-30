@@ -13,16 +13,17 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: 40,
+        fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingTop: 20,
+
         paddingBottom: 20,        
 
     },
-    container:{
+    container: {
+        paddingTop: 30,
         alignSelf: 'stretch',
         height: 80,
-        backgroundColor: 'teal',
+        backgroundColor: 'steelblue',
     }
   });

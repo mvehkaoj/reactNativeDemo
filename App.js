@@ -1,33 +1,38 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Header from './components/Header'
+import Todoitem from './components/Todoitem'
 
 export default function App() {
 
-  const [todos, addtodo] = useState([
+  const [todos, setTodo] = useState([
     { todoItem: 'Git good @ React Native', key: '1'},
     { todoItem: 'Finish demo app', key: '2'},
     { todoItem: 'Profit!', key: '3'}
   ]);
+
+  // const pressHandler = (key) => {
+  //   setTodo((prevTodos) => {
+  //       return prevTodos.filter(todo => todo.key != key);
+  //   })
+  // }
 
   return (
 
     <View style={styles.container}>
       {/* Main Container */}
          
-        {/* add header here */}
+        {/* header component */}
         <Header style={styles.header} />
       
       <View style={styles.content}>
-      <View>
-      {/* add todos here*/}
+      {/*Data from the todos state get passed to the Todoitem component as a data prop*/}
         <FlatList
         data={todos}
         renderItem={({ item }) => (
-          <Text>{item.todoItem}</Text>
+          <Todoitem data={item.todoItem} />
         )}       
         />
-      </View>
       </View>
 
       <View style={styles.addForm}>
@@ -36,7 +41,7 @@ export default function App() {
       </View>
 
     
-      <Text styles={styles.footer}>Todo list by: Matti Vehkaoja</Text>
+      <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text>
     </View>
   );
 }
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#fff',
+    backgroundColor: '#f2f9ff',
 
   },
   header: {
@@ -54,10 +59,12 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 20,
-
+    
   },
   addForm:{
 
   },
-  footer: {}
+  footer: {
+    textAlign: 'center',
+  },
 });
