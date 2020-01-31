@@ -15,7 +15,7 @@ export default class Addtodo extends Component {
                 placeholder='add todo...'
                 onChangeText={(text) => this.setState({text})}
                 />
-                <Button title='Add' color='steelblue' onPress={() => this.props.submitHandler(this.state.text)}/>
+                <Button title='Add todo >' color='steelblue' onPress={() => this.props.submitHandler(this.state.text)}/>
             </View>
         )
     }
@@ -23,9 +23,10 @@ export default class Addtodo extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        marginVertical: 10,
+        marginTop: 10,
+        marginHorizontal: 10,
         paddingHorizontal: 8,
-        paddingVertical: 5,
+        paddingVertical: 10,
         borderWidth: 1,
         borderColor: '#ccc',
     }
