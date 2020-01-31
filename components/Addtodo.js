@@ -13,6 +13,7 @@ export default class Addtodo extends Component {
                 <TextInput
                 style={styles.inputBox}
                 placeholder='add todo...'
+                clearButtonMode='while-editing'
                 onChangeText={(text) => this.setState({text})}
                 />
                 <Button title='Add todo >' color='steelblue' onPress={() => this.props.submitHandler(this.state.text)}/>
