@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Header from './components/Header'
 import Todoitem from './components/Todoitem'
 import Addtodo from './components/Addtodo'
@@ -19,40 +19,49 @@ export default function App() {
   }
 
   const submitHandler = (text) => {
-    setTodo((prevTodos) => {
-      return [
-        ...prevTodos,
-        { todoItem: text, key: Math.random().toString() }
-      ];
-    })
+
+    if(text.length >= 1) {
+      setTodo((prevTodos) => {
+        return [
+          ...prevTodos,
+          { todoItem: text, key: Math.random().toString() }
+        ];
+      })
+    } else {
+      Alert.alert('ERROR!', 'Todos cannot be empty!')
+    }
+
   }
 
   return (
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+    }}>
+      <View style={styles.container}>
+        {/* Main Container */}
+          
+          {/* header component */}
+          <Header style={styles.header} />
+        
+        <View style={styles.content}>
+        {/*Data from the todos state get passed to the Todoitem component as a data prop*/}
+          <FlatList
+          data={todos}
+          renderItem={({ item }) => (
+            <Todoitem itemKey={item.key} data={item.todoItem} pressHandler={pressHandler}/>
+          )}       
+          />
+        </View>
 
-    <View style={styles.container}>
-      {/* Main Container */}
-         
-        {/* header component */}
-        <Header style={styles.header} />
+        <View style={styles.addForm}>
+        {/* add form here */}
+            <Addtodo submitHandler={submitHandler} />
+        </View>
+
       
-      <View style={styles.content}>
-      {/*Data from the todos state get passed to the Todoitem component as a data prop*/}
-        <FlatList
-        data={todos}
-        renderItem={({ item }) => (
-          <Todoitem itemKey={item.key} data={item.todoItem} pressHandler={pressHandler}/>
-        )}       
-        />
+        <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text>
       </View>
-
-      <View style={styles.addForm}>
-      {/* add form here */}
-          <Addtodo submitHandler={submitHandler} />
-      </View>
-
-    
-      <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text>
-    </View>
+      </TouchableWithoutFeedback>
   );
 }
 
