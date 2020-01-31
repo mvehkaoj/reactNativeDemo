@@ -26,11 +26,10 @@ const styles = StyleSheet.create({
     },
     touchableContainer: {
         padding: 10,
-        backgroundColor: 'lightsteelblue',
+        backgroundColor: '#fff',
         marginTop: 5,
         borderWidth: 1,
         borderColor: '#c0c0c0',
-        borderStyle: "dashed",
         borderRadius: 10,
         
     },
