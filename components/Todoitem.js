@@ -2,10 +2,17 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 
 export default class Todoitem extends Component {
+
+    handlePress = () => {
+        // Need to check to prevent null exception. 
+        this.props.onPress?.(); // Same as this.props.onPress && this.props.onPress();
+      }
+
     render() {
         return (
             <View style={styles.container}>
-            <TouchableOpacity style={styles.touchableContainer}>
+            <TouchableOpacity style={styles.touchableContainer}
+            onPress={() => this.props.pressHandler(this.props.itemKey)}>
                 <Text style={styles.text}> {this.props.data} </Text>
             </TouchableOpacity>
             </View>

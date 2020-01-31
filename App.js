@@ -11,11 +11,11 @@ export default function App() {
     { todoItem: 'Profit!', key: '3'}
   ]);
 
-  // const pressHandler = (key) => {
-  //   setTodo((prevTodos) => {
-  //       return prevTodos.filter(todo => todo.key != key);
-  //   })
-  // }
+  const pressHandler = (key) => {
+    setTodo((prevTodos) => {
+        return prevTodos.filter(todo => todo.key != key);
+    })
+  }
 
   return (
 
@@ -30,7 +30,7 @@ export default function App() {
         <FlatList
         data={todos}
         renderItem={({ item }) => (
-          <Todoitem data={item.todoItem} pressHandler={pressHandler}/>
+          <Todoitem itemKey={item.key} data={item.todoItem} pressHandler={pressHandler}/>
         )}       
         />
       </View>
