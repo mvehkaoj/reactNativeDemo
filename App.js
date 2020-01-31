@@ -30,7 +30,7 @@ export default function App() {
         <FlatList
         data={todos}
         renderItem={({ item }) => (
-          <Todoitem data={item.todoItem} />
+          <Todoitem data={item.todoItem} pressHandler={pressHandler}/>
         )}       
         />
       </View>
