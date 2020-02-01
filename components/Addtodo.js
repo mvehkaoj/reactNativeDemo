@@ -7,22 +7,23 @@ export default class Addtodo extends Component {
 
     render() {
 
-        const Submit = () => {
+        const submit = () => {
             this.props.submitHandler(this.state.text);
-            this.TextInput.clear();
+            this._textInput.clear();
         }
 
         return (
             <View>
                 <TextInput
+                ref={component => this._textInput = component}
                 style={styles.inputBox}
                 placeholder='add todo...'
                 clearButtonMode='always'
                 onChangeText={(text) => this.setState({text})}
                 returnKeyType='done'
-                onSubmitEditing={() => this.props.submitHandler(this.state.text)}
+                onSubmitEditing={() => submit()}
                 />
-                <Button title='Add todo >' color='steelblue' onPress={() => this.props.submitHandler(this.state.text)}/>
+                <Button title='Add todo >' color='steelblue' onPress={() => submit()}/>
             </View>
         )
     }

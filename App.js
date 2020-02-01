@@ -35,16 +35,17 @@ export default function App() {
 
   return (
     <TouchableWithoutFeedback onPress={() => {
-      Keyboard.dismiss();
+      Keyboard.dismiss(); //Hides keyboard when touching on the UI     
     }}>
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        {/* Main Container */}
+        {/* Main Container. KeyboardAvoidingView dodges the whole UI when OS keyboard appears */}
           
-          {/* header component */}
           <Header style={styles.header} />
-        
+          {/* header component */}
+
         <View style={styles.content}>
-        {/*Data from the todos state get passed to the Todoitem component as a data prop*/}
+        {/*Data from the todos state get passed to the Todoitem component as a data prop.
+        itemKey prop passes the key of the todo object for the pressHandler function*/}
           <FlatList
           data={todos}
           renderItem={({ item }) => (
@@ -54,7 +55,7 @@ export default function App() {
         </View>
 
         <View style={styles.addForm}>
-        {/* add form here */}
+        {/* Add todo form. submitHandler prop passes teh submitHandler function to the component */}
             <Addtodo submitHandler={submitHandler} />
         </View>
 
