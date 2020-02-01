@@ -7,14 +7,20 @@ export default class Addtodo extends Component {
 
     render() {
 
-      
+        const Submit = () => {
+            this.props.submitHandler(this.state.text);
+            this.TextInput.clear();
+        }
+
         return (
             <View>
                 <TextInput
                 style={styles.inputBox}
                 placeholder='add todo...'
-                clearButtonMode='while-editing'
+                clearButtonMode='always'
                 onChangeText={(text) => this.setState({text})}
+                returnKeyType='done'
+                onSubmitEditing={() => this.props.submitHandler(this.state.text)}
                 />
                 <Button title='Add todo >' color='steelblue' onPress={() => this.props.submitHandler(this.state.text)}/>
             </View>
@@ -24,8 +30,8 @@ export default class Addtodo extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        marginTop: 10,
-        marginHorizontal: 10,
+        marginBottom: 5,
+        marginTop: 2,
         paddingHorizontal: 8,
         paddingVertical: 10,
         borderWidth: 1,

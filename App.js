@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Alert, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import Header from './components/Header'
 import Todoitem from './components/Todoitem'
 import Addtodo from './components/Addtodo'
@@ -37,7 +37,7 @@ export default function App() {
     <TouchableWithoutFeedback onPress={() => {
       Keyboard.dismiss();
     }}>
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         {/* Main Container */}
           
           {/* header component */}
@@ -60,8 +60,9 @@ export default function App() {
 
       
         <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text>
-      </View>
-      </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
+      
   );
 }
 
@@ -74,16 +75,17 @@ const styles = StyleSheet.create({
 
   },
   header: {
+    justifyContent: 'flex-start',
     alignSelf: 'stretch',
   },
   content: {
-    padding: 20,
-    
+    flex: 2,    
   },
   addForm:{
 
   },
   footer: {
+    justifyContent: 'flex-end',
     textAlign: 'center',
   },
 });
