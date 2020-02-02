@@ -7,16 +7,29 @@ import Addtodo from './components/Addtodo'
 export default function App() {
 
   const [todos, setTodo] = useState([
-    { todoItem: 'Git good @ React Native', key: '1'},
-    { todoItem: 'Finish demo app', key: '2'},
-    { todoItem: 'Profit!', key: '3'}
+    { todoItem: 'Local storage. Redux?', done: false, key: '1'},
+    { todoItem: 'Fix bugs', done: true, key: '2'},
+    { todoItem: 'Make UI pretty', done: false, key: '3'},
+    { todoItem: 'Navigation', done: false, key: '4'}
   ]);
 
-  const pressHandler = (key) => {
+
+  const deleteHandler = (key) => {
     setTodo((prevTodos) => {
         return prevTodos.filter(todo => todo.key != key);
     })
   }
+
+
+const doneHandler = (key) => {
+  const newTodos = todos.map(todo => {
+            if(todo.key === key) {
+              todo.done = !todo.done
+            } return todo;
+        });
+  setTodo(newTodos);
+  }
+
 
   const submitHandler = (text) => {
 
@@ -24,14 +37,14 @@ export default function App() {
       setTodo((prevTodos) => {
         return [
           ...prevTodos,
-          { todoItem: text, key: Math.random().toString() }
+          { todoItem: text, done: false, key: Math.random().toString() },
         ];
       })
     } else {
       Alert.alert('ERROR!', 'Todos cannot be empty!')
     }
-
   }
+
 
   return (
     <TouchableWithoutFeedback onPress={() => {
@@ -44,18 +57,22 @@ export default function App() {
           {/* header component */}
 
         <View style={styles.content}>
+
         {/*Data from the todos state get passed to the Todoitem component as a data prop.
         itemKey prop passes the key of the todo object for the pressHandler function*/}
+
           <FlatList
           data={todos}
           renderItem={({ item }) => (
-            <Todoitem itemKey={item.key} data={item.todoItem} pressHandler={pressHandler}/>
+            <Todoitem itemKey={item.key} done={item.done} data={item.todoItem} pressDone={doneHandler} pressHandler={deleteHandler}/>
           )}       
           />
         </View>
 
         <View style={styles.addForm}>
+
         {/* Add todo form. submitHandler prop passes teh submitHandler function to the component */}
+
             <Addtodo submitHandler={submitHandler} />
         </View>
 

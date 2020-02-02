@@ -3,25 +3,39 @@ import { Text, StyleSheet, View, TouchableOpacity, Button } from 'react-native'
 
 export default class Todoitem extends Component {
 
-    state = {done: false}
+/*  !!! This whole thing was ugly and buggy. Replaced with doneStyle(). !!!
 
-    done = () => {
-        if(!this.state.done) {
-                this._textBox.setNativeProps({style: {textDecorationLine: 'line-through'}}),
-                this.setState({done: true})
+    doneCheck = () => {
+        if(this.props.done) {
+                this._textBox.setNativeProps({style: {textDecorationLine: 'line-through'}})
           } else {
-            this._textBox.setNativeProps({style: {textDecorationLine: 'none'}}),
-            this.setState({done: false})
+            this._textBox.setNativeProps({style: {textDecorationLine: 'none'}})
           }
     }
 
+    pressDone = () => {
+        this.props.pressDone(this.props.itemKey),
+        this.doneCheck()
+    }
+
+    componentDidMount(){
+        this.doneCheck()
+    } */
+
+
+    doneStyle = () => {
+        return {
+            textDecorationLine: this.props.done ?
+            'line-through' : 'none'
+        }
+    }
 
     render() {
 
         return (
             <View style={styles.container}>
-            <TouchableOpacity style={styles.touchableContainer} onPress={this.done}>
-                <Text ref={component => this._textBox = component} style={styles.text}> {this.props.data} </Text>
+            <TouchableOpacity style={styles.touchableContainer} onPress={() => this.props.pressDone(this.props.itemKey)}>
+                <Text ref={component => this._textBox = component} style={[styles.text, this.doneStyle()]}> {this.props.data} </Text>
                 <Button title='X' color='lightsteelblue' onPress={() => this.props.pressHandler(this.props.itemKey)}/>
             </TouchableOpacity>
             

@@ -9,13 +9,13 @@ export default class Addtodo extends Component {
 
         const submit = () => {
             this.props.submitHandler(this.state.text);
-            this._textInput.clear();
+            this.textInput.clear();
         }
 
         return (
             <View>
                 <TextInput
-                ref={component => this._textInput = component}
+                ref={component => this.textInput = component}
                 style={styles.inputBox}
                 placeholder='add todo...'
                 clearButtonMode='always'
