@@ -23,7 +23,7 @@ export default class Addtodo extends Component {
                 returnKeyType='done'
                 onSubmitEditing={() => submit()}
                 />
-                <Button title='Add todo >' color='steelblue' onPress={() => submit()}/>
+                {/* <Button title='Add todo >' color='steelblue' onPress={() => submit()}/> */}
             </View>
         )
     }

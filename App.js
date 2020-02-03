@@ -7,7 +7,7 @@ import Addtodo from './components/Addtodo'
 export default function App() {
 
   const [todos, setTodo] = useState([
-    { todoItem: 'Local storage. Redux?', done: false, key: '1'},
+    { todoItem: 'Local storage', done: false, key: '1'},
     { todoItem: 'Fix bugs', done: true, key: '2'},
     { todoItem: 'Make UI pretty', done: false, key: '3'},
     { todoItem: 'Navigation', done: false, key: '4'}
@@ -77,7 +77,7 @@ const doneHandler = (key) => {
         </View>
 
       
-        <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text>
+        {/* <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text> */}
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
       
@@ -100,10 +100,11 @@ const styles = StyleSheet.create({
     flex: 2,    
   },
   addForm:{
-
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   footer: {
-    justifyContent: 'flex-end',
+    
     textAlign: 'center',
   },
 });
