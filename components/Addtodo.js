@@ -18,6 +18,7 @@ export default class Addtodo extends Component {
                 ref={component => this.textInput = component}
                 style={styles.inputBox}
                 placeholder='add todo...'
+                placeholderTextColor='#505050'
                 clearButtonMode='always'
                 onChangeText={(text) => this.setState({text})}
                 returnKeyType='done'
@@ -31,12 +32,15 @@ export default class Addtodo extends Component {
 
 const styles = StyleSheet.create({
     inputBox: {
-        marginBottom: 5,
+        marginBottom: 0,
         marginTop: 2,
-        paddingHorizontal: 8,
-        paddingVertical: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        backgroundColor: '#fff',
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 0, 
+        borderTopWidth: 1,
+        borderColor: '#505050',
+        backgroundColor: '#292c33',
+        color: '#fff',
+        fontSize: 20,
     }
 })

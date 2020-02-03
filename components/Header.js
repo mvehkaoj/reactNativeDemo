@@ -5,7 +5,7 @@ export default class Header extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.header}> TODOS: </Text>
+                <Text style={styles.header}> Todo app </Text>
             </View>
         )
     }
@@ -16,14 +16,14 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-
+        color: '#61dbfb',
         paddingBottom: 20,        
 
     },
     container: {
-        paddingTop: 30,
+        paddingTop: 25,
         alignSelf: 'stretch',
-        height: 80,
-        backgroundColor: 'steelblue',
+        height: 70,
+        backgroundColor: '#20232a',
     }
   });

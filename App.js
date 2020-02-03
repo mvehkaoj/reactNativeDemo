@@ -1,5 +1,13 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList, Alert, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {  StyleSheet,
+          View,
+          FlatList,
+          Alert,
+          Keyboard,
+          TouchableWithoutFeedback,
+          KeyboardAvoidingView,
+          AsyncStorage,
+          InteractionManager } from 'react-native';
 import Header from './components/Header'
 import Todoitem from './components/Todoitem'
 import Addtodo from './components/Addtodo'
@@ -13,13 +21,45 @@ export default function App() {
     { todoItem: 'Navigation', done: false, key: '4'}
   ]);
 
+  useEffect(() => {
+    // write data from AsyncStorage to todos state when loading app
+    getData()
+    return () => {
+      // cleanup
+    };
+  }, [])
+
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(todos));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  InteractionManager.runAfterInteractions(() => {
+    //saves state to AsyncStorage when user interactions are done.
+    saveData()
+  });
+
+  const getData = async () => {
+    try {
+      const data = await AsyncStorage.getItem('todos');
+      if (data !== null) {
+        console.log(data);
+        let parseData = JSON.parse(data)
+        setTodo(parseData)
+      }
+    } catch (error) {
+        console.log(error)
+    }
+  }
 
   const deleteHandler = (key) => {
     setTodo((prevTodos) => {
         return prevTodos.filter(todo => todo.key != key);
-    })
+    });
   }
-
 
 const doneHandler = (key) => {
   const newTodos = todos.map(todo => {
@@ -37,12 +77,12 @@ const doneHandler = (key) => {
       setTodo((prevTodos) => {
         return [
           ...prevTodos,
-          { todoItem: text, done: false, key: Math.random().toString() },
+          { todoItem: text, done: false, key: Math.random().toString() }
         ];
       })
     } else {
       Alert.alert('ERROR!', 'Todos cannot be empty!')
-    }
+    };
   }
 
 
@@ -56,12 +96,23 @@ const doneHandler = (key) => {
           <Header style={styles.header} />
           {/* header component */}
 
+          {/* <Button
+          title="Save"
+          onPress={() => saveData()}
+        />
+
+        <Button
+          title="Get"
+          onPress={() => getData()}
+        /> */}
+
         <View style={styles.content}>
 
         {/*Data from the todos state get passed to the Todoitem component as a data prop.
         itemKey prop passes the key of the todo object for the pressHandler function*/}
 
           <FlatList
+          style={styles.list}
           data={todos}
           renderItem={({ item }) => (
             <Todoitem itemKey={item.key} done={item.done} data={item.todoItem} pressDone={doneHandler} pressHandler={deleteHandler}/>
@@ -76,8 +127,6 @@ const doneHandler = (key) => {
             <Addtodo submitHandler={submitHandler} />
         </View>
 
-      
-        {/* <Text style={styles.footer}>Todo list by: Matti Vehkaoja</Text> */}
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
       
@@ -89,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#f2f9ff',
+    backgroundColor: '#292c33',
 
   },
   header: {
@@ -99,12 +148,10 @@ const styles = StyleSheet.create({
   content: {
     flex: 2,    
   },
+  list:{
+    paddingTop: 10,
+  },
   addForm:{
-    flex: 1,
     justifyContent: 'flex-end',
-  },
-  footer: {
-    
-    textAlign: 'center',
-  },
+  }
 });
