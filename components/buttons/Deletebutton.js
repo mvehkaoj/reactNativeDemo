@@ -6,7 +6,7 @@ export default class Deletebutton extends Component {
     render() {
         return (
             <View>
-            <TouchableOpacity onPress={this.props.press}>
+            <TouchableOpacity onPress={this.props.press} style={styles.buttonCont}>
                 <MaterialCommunityIcons name='delete-circle' size={25} color='#505050'></MaterialCommunityIcons>
             </TouchableOpacity>
             </View>
@@ -14,4 +14,10 @@ export default class Deletebutton extends Component {
     }
 }
 
-const styles = StyleSheet.create({})
+
+const styles = StyleSheet.create({
+    buttonCont: {
+        marginTop: 3,
+        marginRight: 3,
+    }
+});

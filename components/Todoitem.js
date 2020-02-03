@@ -26,6 +26,8 @@ export default class Todoitem extends Component {
 
     doneStyle = () => {
         return {
+            color: this.props.done ?
+            '#505050' : '#efefef',
             textDecorationLine: this.props.done ?
             'line-through' : 'none'
         }
@@ -50,17 +52,19 @@ const styles = StyleSheet.create({
     text: {
         flex: 3,
         fontSize: 20,
-        color: '#fff'
+        color: '#dfdfdf'
     },
     touchableContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 5,
+        paddingVertical: 6,
+        paddingHorizontal: 3,
         backgroundColor: '#20232a',
         marginHorizontal: 8,
         marginTop: 8,
         borderWidth: 1,
-        borderColor: '#505050',
+        borderStyle: 'solid',
+        borderColor: '#40434a',
         borderRadius: 7,
         
     },

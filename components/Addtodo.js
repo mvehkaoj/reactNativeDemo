@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         borderWidth: 0, 
         borderTopWidth: 1,
-        borderColor: '#505050',
-        backgroundColor: '#292c33',
-        color: '#fff',
+        borderColor: '#292c33',
+        backgroundColor: '#efefef',
+        color: '#292c33',
         fontSize: 20,
     }
 })
