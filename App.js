@@ -7,7 +7,8 @@ import {  StyleSheet,
           TouchableWithoutFeedback,
           KeyboardAvoidingView,
           AsyncStorage,
-          InteractionManager } from 'react-native';
+          InteractionManager,
+          StatusBar } from 'react-native';
 import Header from './components/Header'
 import Todoitem from './components/Todoitem'
 import Addtodo from './components/Addtodo'
@@ -24,9 +25,6 @@ export default function App() {
   useEffect(() => {
     // write data from AsyncStorage to todos state when loading app
     getData()
-    return () => {
-      // cleanup
-    };
   }, [])
 
   const saveData = async () => {
@@ -46,7 +44,6 @@ export default function App() {
     try {
       const data = await AsyncStorage.getItem('todos');
       if (data !== null) {
-        console.log(data);
         let parseData = JSON.parse(data)
         setTodo(parseData)
       }
@@ -92,7 +89,7 @@ const doneHandler = (key) => {
     }}>
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         {/* Main Container. KeyboardAvoidingView dodges the whole UI when OS keyboard appears */}
-          
+          <StatusBar barStyle='light-content'/>
           <Header style={styles.header} />
           {/* header component */}
 
@@ -129,7 +126,6 @@ const doneHandler = (key) => {
 
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
-      
   );
 }
 
@@ -150,6 +146,7 @@ const styles = StyleSheet.create({
   },
   list:{
     paddingTop: 10,
+    paddingBottom: 20,
   },
   addForm:{
     justifyContent: 'flex-end',
