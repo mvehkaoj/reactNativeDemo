@@ -9,8 +9,8 @@ export default class Header extends Component {
                 style={styles.logo}
                 source={require('../assets/logo.png')}
                 />
-                <Text style={styles.header}>Todos:</Text>
-                {/* <Text style={styles.header2}>React Native</Text> */}
+                <Text style={styles.header}>Native</Text>
+                <Text style={styles.header2}>Todos</Text>
             </View>
         )
     }
@@ -19,18 +19,14 @@ export default class Header extends Component {
 const styles = StyleSheet.create({
     header: {
         fontSize: 30,
+        textAlign: 'center',
+        color: '#61dbfb',   
+    },
+    header2: {
+        fontSize: 30,
         fontWeight: '500',
         textAlign: 'center',
         color: '#efefef',
-        // paddingTop: 5,        
-
-    },
-    header2: {
-        fontSize: 13,
-        textAlign: 'center',
-        color: '#61dbfb',
-        paddingBottom: 5,        
-        marginTop: 23,
     },
     container: {
         flexDirection: 'row',
