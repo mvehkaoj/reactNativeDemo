@@ -33,7 +33,7 @@ export default class Addtodo extends Component {
 const styles = StyleSheet.create({
     inputBox: {
         marginBottom: 0,
-        marginTop: 2,
+        marginTop: 0,
         paddingHorizontal: 10,
         paddingVertical: 8,
         borderWidth: 0, 

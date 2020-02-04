@@ -23,7 +23,7 @@ export default function App() {
   ]);
 
   useEffect(() => {
-    // write data from AsyncStorage to todos state when loading app
+    // write data from AsyncStorage to todos state when loading app.
     getData()
   }, [])
 
@@ -111,11 +111,14 @@ const doneHandler = (key) => {
           <FlatList
           style={styles.list}
           data={todos}
+          contentContainerStyle={{paddingBottom:25}}
           renderItem={({ item }) => (
             <Todoitem itemKey={item.key} done={item.done} data={item.todoItem} pressDone={doneHandler} pressHandler={deleteHandler}/>
           )}       
           />
         </View>
+
+        <View style={styles.spacer}></View>
 
         <View style={styles.addForm}>
 
@@ -145,8 +148,7 @@ const styles = StyleSheet.create({
     flex: 2,    
   },
   list:{
-    paddingTop: 10,
-    paddingBottom: 20,
+    paddingTop: 20,
   },
   addForm:{
     justifyContent: 'flex-end',
