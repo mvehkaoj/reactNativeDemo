@@ -4,26 +4,6 @@ import Deletebutton from './buttons/Deletebutton'
 
 export default class Todoitem extends Component {
 
-/*  !!! This whole thing was ugly and buggy. Replaced with doneStyle(). !!!
-
-    doneCheck = () => {
-        if(this.props.done) {
-                this._textBox.setNativeProps({style: {textDecorationLine: 'line-through'}})
-          } else {
-            this._textBox.setNativeProps({style: {textDecorationLine: 'none'}})
-          }
-    }
-
-    pressDone = () => {
-        this.props.pressDone(this.props.itemKey),
-        this.doneCheck()
-    }
-
-    componentDidMount(){
-        this.doneCheck()
-    } */
-
-
     doneStyle = () => {
         return {
             color: this.props.done ?

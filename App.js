@@ -16,10 +16,10 @@ import Addtodo from './components/Addtodo'
 export default function App() {
 
   const [todos, setTodo] = useState([
-    { todoItem: 'Local storage', done: false, key: '1'},
-    { todoItem: 'Fix bugs', done: true, key: '2'},
-    { todoItem: 'Make UI pretty', done: false, key: '3'},
-    { todoItem: 'Navigation', done: false, key: '4'}
+    { todoItem: 'Tap on text bar to add a todo', done: false, key: '1'},
+    { todoItem: 'Tap on item to mark it done', done: true, key: '2'},
+    { todoItem: 'Tap trash can to delete', done: false, key: '3'},
+    { todoItem: 'Profit!', done: false, key: '4'}
   ]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function App() {
   }
 
   InteractionManager.runAfterInteractions(() => {
-    //saves state to AsyncStorage when user interactions are done.
+    //saves state to AsyncStorage when user interactions are done. Bit hacky, but works for now.
     saveData()
   });
 
@@ -91,17 +91,6 @@ const doneHandler = (key) => {
         {/* Main Container. KeyboardAvoidingView dodges the whole UI when OS keyboard appears */}
           <StatusBar barStyle='light-content'/>
           <Header style={styles.header} />
-          {/* header component */}
-
-          {/* <Button
-          title="Save"
-          onPress={() => saveData()}
-        />
-
-        <Button
-          title="Get"
-          onPress={() => getData()}
-        /> */}
 
         <View style={styles.content}>
 
